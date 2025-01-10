@@ -8,6 +8,7 @@ app.use(bodyParser.json());
 // const connectDB = require('./config/db.js');
 const { connectDB, disconnectDB } = require('./config/db.js');
 const { getAllUsers, createUser } = require('./services/userService.js');
+const { Login } = require("./services/loginService.js");
 
 // Connect to the database once when the server starts
 connectDB().then(() => {
@@ -41,7 +42,8 @@ app.post("/addUser", async ( req, res ) => {
 	try {
     const userData = req.body; // Get user data from the request body
     const newUser = await createUser(userData); // Call service to create the user
-    res.status(201).json({
+    console.log(newUser);
+	res.status(201).json({
       message: "User created successfully",
       user: newUser,
     });
@@ -53,6 +55,20 @@ app.post("/addUser", async ( req, res ) => {
     });
   }
 });
+
+app.post("/login", async ( req, res ) => {
+	console.log("login requested")
+	try {
+    const userData = req.body; // Get user data from the request body
+    const loginData = await Login(userData); // Call service to create the user
+	console.log("Login successful");
+    res.status(201).json({message: "User login successfull", user: loginData});
+  } catch (error) {
+	console.log("Login error", error.message);
+	res.status(500).json({message: "Error login user", error: error.message});
+  }
+});
+
 
 const _PORT = 3300;
 app.listen(_PORT, console.log(`Server is running on http://localhost:${_PORT}`));
