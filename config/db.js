@@ -1,28 +1,22 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+require('dotenv').config();
 
-const uri = "mongodb://localhost:27017/authentication-app"; // Update with your MongoDB URI
+const connectDB = async () => {
+    try {
+        const uri = process.env.MONGODB_URI;
 
-async function connectDB() {
-  try {
-    await mongoose.connect(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
-    console.log("Connected to MongoDB!");
-  } catch (error) {
-    console.error("Failed to connect to MongoDB:", error);
-    process.exit(1);
-  }
-}
-
-const disconnectDB = async () => {
-  try {
-    await mongoose.disconnect();
-    console.log('MongoDB disconnected');
-  } catch (error) {
-    console.error('MongoDB disconnection error:', error);
-    throw error;
-  }
+        await mongoose.connect(uri, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+    } catch (err) {
+        console.error("Database connection failed", err.message);
+        process.exit(1);
+    }
 };
 
-module.exports = {disconnectDB, connectDB};
+const disconnectDB = async () => {
+    await mongoose.disconnect();
+};
+
+module.exports = { connectDB, disconnectDB };
