@@ -21,7 +21,7 @@ router.get("/get-all", isAuthenticated, async (req, res) => {
 });
 
 // Route for creating a new user
-router.post("/signup", async (req, res) => {
+router.post("/signup", isAuthenticated, async (req, res) => {
     try {
         const userData = req.body;
         const newUser = await createUser(userData);

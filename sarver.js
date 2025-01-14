@@ -10,7 +10,7 @@ const { connectDB, disconnectDB } = require("./config/db");
 
 const userRoutes = require("./routes/userRoutes");
 const postRoutes = require("./routes/postRoutes");
-const authRoutes = require("./routes/authRoutes");
+// const authRoutes = require("./routes/authRoutes");
 
 
 // Middleware
@@ -48,7 +48,7 @@ app.get("/", (req, res) => {
 });
 app.use("/user", userRoutes);
 app.use("/post", postRoutes);
-app.use("/login", authRoutes);
+// app.use("/login", authRoutes);
 
 // Global Error Handling Middleware
 app.use(errorHandler);
