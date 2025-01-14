@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
     res.send("app is successfully initilized");
 });
 app.use("/users", userRoutes);
-app.use("/post", postRoutes);
+app.use("/posts", postRoutes);
 app.use("/login", authRoutes);
 
 // Global Error Handling Middleware

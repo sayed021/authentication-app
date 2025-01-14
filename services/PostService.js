@@ -3,6 +3,17 @@ const mongoose = require('mongoose');  // Use require instead of import
 const Post = require('../models/post');
 const User = require('../models/user');
 
+// Fetch All Users
+async function getPosts() {
+  try {
+    const posts = await Post.find();
+    return posts;
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    throw error;
+  }
+}
+
 async function createPost(postData, userId = "677fc2f68eb997f4952998c3") {
       const newPostData = {
         title: postData.title,
@@ -17,6 +28,7 @@ async function createPost(postData, userId = "677fc2f68eb997f4952998c3") {
         likes: postData.likes || 0,
       };
       console.log("Post call successfully");
+      
     try {
       const newPost = new Post(newPostData);
       const result = await newPost.save();
@@ -29,4 +41,4 @@ async function createPost(postData, userId = "677fc2f68eb997f4952998c3") {
 }
   
 
-module.exports = { createPost };
+module.exports = { getPosts, createPost };
