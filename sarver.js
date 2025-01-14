@@ -1,6 +1,9 @@
 const express = require("express");
 require('dotenv').config();
 const bodyParser = require("body-parser");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
+
 const app = express();
 const { errorHandler } = require("./middleware/errorHandler");
 const { connectDB, disconnectDB } = require("./config/db");
@@ -12,6 +15,22 @@ const authRoutes = require("./routes/authRoutes");
 
 // Middleware
 app.use(bodyParser.json());
+
+// Session Middleware
+app.use(
+	session({
+	  secret: process.env.SESSION_SECRET || "defaultsecret", // Replace with a secure secret in production
+	  resave: false, // Don't save session if not modified
+	  saveUninitialized: false, // Don't create a session until something is stored
+	  store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }), // Store sessions in MongoDB
+	  cookie: {
+		maxAge: 1000 * 60 * 60 * 24, // 1 day
+		httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
+		secure: process.env.NODE_ENV === "production", // Use secure cookies in production
+	  },
+	})
+  );
+  
 
 // Connect to DB
 connectDB()
@@ -27,8 +46,8 @@ connectDB()
 app.get("/", (req, res) => {
     res.send("app is successfully initilized");
 });
-app.use("/users", userRoutes);
-app.use("/posts", postRoutes);
+app.use("/user", userRoutes);
+app.use("/post", postRoutes);
 app.use("/login", authRoutes);
 
 // Global Error Handling Middleware

@@ -1,9 +1,10 @@
 const express = require("express");
 const { createPost, getPosts } = require("../services/PostService");
+const { isAuthenticated } = require("../middleware/authentication");
 const router = express.Router();
 
 // Route for creating a new post
-router.get("/", async (req, res) => {
+router.get("/get-all", async (req, res) => {
     try {
         const posts = await getPosts();
         res.status(201).json({
@@ -16,7 +17,7 @@ router.get("/", async (req, res) => {
 });
 
 // Route for creating a new post
-router.post("/create", async (req, res) => {
+router.post("/create", isAuthenticated, async (req, res) => {
     try {
         const postData = req.body;
         const newPost = await createPost(postData);

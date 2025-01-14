@@ -3,7 +3,7 @@ const { Login } = require("../services/loginService");
 const router = express.Router();
 
 // Route for user login
-router.post("/", async (req, res) => {
+router.post("/login", async (req, res) => {
     try {
         const userData = req.body;
         const loginData = await Login(userData);
