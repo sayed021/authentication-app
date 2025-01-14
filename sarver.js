@@ -10,7 +10,6 @@ const { connectDB, disconnectDB } = require("./config/db");
 
 const userRoutes = require("./routes/userRoutes");
 const postRoutes = require("./routes/postRoutes");
-// const authRoutes = require("./routes/authRoutes");
 
 
 // Middleware
@@ -46,16 +45,16 @@ connectDB()
 app.get("/", (req, res) => {
     res.send("app is successfully initilized");
 });
+
 app.use("/user", userRoutes);
 app.use("/post", postRoutes);
-// app.use("/login", authRoutes);
 
 // Global Error Handling Middleware
 app.use(errorHandler);
 
 // Server Setup
 const _PORT = 3300;
-app.listen(_PORT, () => {
+const server = app.listen(_PORT, () => {
     console.log(`Server is running on http://localhost:${_PORT}`);
 });
 
