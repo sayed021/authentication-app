@@ -77,20 +77,9 @@ app.post("/login", async (req, res) => {
 });
 
 app.post("/post", async (req, res) => {
-	const mockPostData = {
-		title: 'Mock Post Title',
-		content: 'This is a mock post content for testing.',
-		tags: ['technology', 'web', 'development'],
-		category: 'Technology',
-		published: true,
-		publishedAt: new Date(),
-		slug: 'mock-post-title',
-		coverImage: '',
-		likes: 100,
-	};
 
     try {
-        const userData = req.body || mockPostData;
+        const userData = req.body;
         const postData = await createPost(userData, "60d2f3c3b9b2a14f788f8b8c"); 
         res.status(201).json({
             message: "Post is successfull",
