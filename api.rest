@@ -1,0 +1,20 @@
+
+## test api
+GET http://localhost:3300/
+
+### get all user
+GET http://localhost:3300/user/get-all
+Content-Type: application/json
+
+### login
+POST http://localhost:3300/user/login
+Content-Type: application/json
+
+{
+    "email": "john@mail.com",
+    "password": "password123"
+}
+
+### logout
+POST http://localhost:3300/user/logout
+Content-Type: application/json
