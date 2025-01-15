@@ -102,13 +102,21 @@ router.post("/refresh", async (req, res) => {
 
 // Logout Route
 router.post("/logout", (req, res) => {
-    req.session.destroy((err) => {
-        if (err) {
-            return res.status(500).json({ message: "Logout failed" });
-        }
-        res.clearCookie("connect.sid"); // Clear session cookie
-        res.status(200).json({ message: "Logout successful" });
-    });
+    // Clear the session data
+    // req.session.destroy((err) => {
+    //     if (err) {
+    //         return res.status(500).json({ message: "Logout failed" });
+    //     }
+    //     res.clearCookie("connect.sid"); // Clear session cookie
+    //     res.status(200).json({ message: "Logout successful" });
+    // });
+
+    // Clear the refresh token
+    // Clear the access token and refresh token stored in the client's cookies
+    res.clearCookie("accessToken");  // Clear the access token cookie
+    res.clearCookie("refresh_token");  // Clear the refresh token cookie
+
+    res.status(200).json({ message: "Logout successful" });
 });
 
 module.exports = router;

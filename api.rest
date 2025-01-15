@@ -5,7 +5,7 @@ GET http://localhost:3300/
 ### get all user
 GET http://localhost:3300/user/get-all
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzY5MzA1ODYsImV4cCI6MTczNjkzMDYwMX0.VCfQGPRxZT_1y7ZX6IwhSbgJBKQk_f6oukSUgzSPh0s
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzY5MzEzODksImV4cCI6MTczNjkzMTQwNH0.ZNS-HsjuENxjw6OsZygl-QiLKruHmmvy4wAf-bgugX8
 
 ### Refresh token
 POST http://localhost:3300/user/refresh
@@ -13,9 +13,23 @@ Content-Type: application/json
 Cookie: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzY5MzAyNzIsImV4cCI6MTczNjkzMjA3Mn0.aONVDCBlgu-EvsOVIbyfZF1KWRa2SNdVhofBSYpkNlw
 
 
-
 ### login
 POST http://localhost:3300/user/login
+Content-Type: application/json
+
+{
+    "email": "doe2@mail.com",
+    "password": "doe1234"
+}
+
+
+### logout
+POST http://localhost:3300/user/logout
+Content-Type: application/json
+
+
+### login sarver 2
+POST http://localhost:3200/user/login
 Content-Type: application/json
 
 {
@@ -24,5 +38,11 @@ Content-Type: application/json
 }
 
 ### logout
-POST http://localhost:3300/user/logout
+POST http://localhost:3200/user/logout
 Content-Type: application/json
+
+
+### get all user sarver 2
+GET http://localhost:3200/user/get-all
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzY5MzE0NjAsImV4cCI6MTczNjkzMTQ3NX0.GnnFfmSaIgK2x0pSqhwvxlalRVlwc9uxEOuCSswvnU8

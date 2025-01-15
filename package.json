@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "sarver.js",
   "scripts": {
-    "start": "nodemon sarver.js"
+    "start": "nodemon sarver.js",
+    "sarver2": "nodemon sarver2.js"
   },
   "author": "",
   "license": "ISC",
