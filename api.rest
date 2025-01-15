@@ -5,6 +5,14 @@ GET http://localhost:3300/
 ### get all user
 GET http://localhost:3300/user/get-all
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzY5MzA1ODYsImV4cCI6MTczNjkzMDYwMX0.VCfQGPRxZT_1y7ZX6IwhSbgJBKQk_f6oukSUgzSPh0s
+
+### Refresh token
+POST http://localhost:3300/user/refresh
+Content-Type: application/json
+Cookie: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzY5MzAyNzIsImV4cCI6MTczNjkzMjA3Mn0.aONVDCBlgu-EvsOVIbyfZF1KWRa2SNdVhofBSYpkNlw
+
+
 
 ### login
 POST http://localhost:3300/user/login
